@@ -52,12 +52,14 @@ class Usuario {
     public function loadById($id){
         $sql = new Sql();
         $results = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array("ID"=>$id));
+
+        $this->setIdUsuario($id);
     }
 
     public static function getList(){
         $sql = new Sql();
 
-        return $sql->select("SELECT * FROM tb_usuarios ORDER BY deslogin;");
+        return $sql->select("SELECT * FROM tb_usuarios ORDER BY idusuario;");
     }
 
     public static function search($login){
@@ -93,6 +95,20 @@ class Usuario {
         } else {
             throw new Exception('Login e/ou senha inválidos.');
         }
+    }
+
+    public function update($login, $password){
+
+        $this->setDeslogin($login);
+        $this->setDessenha($password);
+
+        $sql = new Sql();
+        
+        $sql->runQuery("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :PASSWORD WHERE idusuario = :ID", array(
+            ":LOGIN"=>$this->getDeslogin(),
+            ":PASSWORD"=>$this->getDessenha(),
+            ":ID"=>$this->getIdUsuario()
+        ));
     }
 
     public function __construct($login = "", $password = ""){

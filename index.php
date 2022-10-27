@@ -25,12 +25,17 @@
     // $usuario->login('root', '!@#$');
 
     //novo usuário
-    $aluno = new Usuario();
+    // $aluno = new Usuario();
 
-    $aluno->setDeslogin("aluno");
-    $aluno->setDessenha("@alun0");
+    // $aluno->setDeslogin("aluno");
+    // $aluno->setDessenha("@alun0");
 
-    $aluno->insert();
+    // $aluno->insert();
 
-    echo $aluno;
+    //fazendo update no usuario
+    $usuario = new Usuario();
+    $usuario->loadById(8);
+    $usuario->update("profesosr", "!@#$!@#$");
+
+    echo $usuario;
 ?>

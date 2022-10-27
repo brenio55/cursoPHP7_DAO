@@ -19,6 +19,8 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////
 
+        
+           //-> Não é possível criar uma função estendida de PDO com o nome Query.
         public function runQuery($rawQuery, $params = array()){
             $stmt = $this->conn->prepare($rawQuery);
             $this->setParams($stmt, $params);
@@ -35,5 +37,5 @@
 
         ////////////////////////////////////////////////////////////////////////////////////////
     }
-    //-> Não é possível criar uma função estendida de PDO com o nome Query.
+ 
 ?>
